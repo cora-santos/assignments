@@ -49,12 +49,6 @@ def prompt_error(key, args=None):
     print(f"\nERROR: {message} Try again. \n")
 
 
-def prompt_enter_to_continue():
-    print()
-    print(">> Press enter to continue.", end='')
-    input()
-
-
 def determine_error_message(user_response, input_type):
     if not user_response:
         error_message_key = "empty_" + input_type
@@ -119,11 +113,11 @@ def request_loan_amount():
         if is_valid_input(response, "amount"):
             break
 
-        error_msg = determine_error_message(response, "loan_amount")
-        if error_msg == "invalid_loan_amount":
-            prompt_error(key=error_msg, args={"loan_amt":response})
+        error_message = determine_error_message(response, "loan_amount")
+        if error_message == "invalid_loan_amount":
+            prompt_error(key=error_message, args={"loan_amt":response})
         else:
-            prompt_error(key=error_msg)
+            prompt_error(key=error_message)
 
     return decimal.Decimal(response)
 
@@ -135,9 +129,9 @@ def request_loan_duration(duration_type):
         if is_valid_input(response, "duration"):
             break
 
-        error_msg = determine_error_message(response, "loan_duration")
+        error_message = determine_error_message(response, "loan_duration")
 
-        match error_msg:
+        match error_message:
             case "negative_loan_duration":
                 format_args = {"duration_type": duration_type}
             case "invalid_loan_duration":
@@ -146,7 +140,7 @@ def request_loan_duration(duration_type):
                     "duration_type": duration_type,
                 }
 
-        prompt_error(key=error_msg, args=format_args)
+        prompt_error(key=error_message, args=format_args)
 
     response = response or 0
     return decimal.Decimal(response)
@@ -175,13 +169,13 @@ def request_loan_apr():
         if is_valid_input(response, "apr"):
             break
 
-        error_msg = determine_error_message(response, "apr")
+        error_message = determine_error_message(response, "apr")
 
-        match error_msg:
+        match error_message:
             case "invalid_apr":
-                prompt_error(key=error_msg, args={"response": response})
+                prompt_error(key=error_message, args={"response": response})
             case _:
-                prompt_error(key=error_msg)
+                prompt_error(key=error_message)
 
     response = response or 0
     return decimal.Decimal(response)
@@ -233,7 +227,10 @@ def calculate_loan_results(amount, months, apr_percent):
 def display_greeting():
     greeting = "\n".join(MESSAGES["welcome"])
     prompt(greeting)
-    prompt_enter_to_continue()
+
+    print()
+    print(">> Press enter to continue.", end='')
+    input()
 
 
 def display_results(loan_terms, loan_calculations):
