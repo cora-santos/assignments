@@ -82,30 +82,33 @@ def invalid_number(number_str):
     return False
 
 
-def valid_loan_amount(loan_amount_str):
-    return (
-        not invalid_number(loan_amount_str) and
-        decimal.Decimal(loan_amount_str) > 0
-    )
+def is_valid_input(input_str, input_type):
+    def is_zero_or_greater():
+        return (
+            not invalid_number(input_str) and
+            decimal.Decimal(input_str) >= 0
+        )
 
+    def is_valid_loan_amount():
+        return (
+            not invalid_number(input_str) and
+            decimal.Decimal(input_str) > 0
+        )
 
-def valid_loan_duration_input(loan_duration_str):
-    zero_or_greater = (
-        not invalid_number(loan_duration_str) and
-        decimal.Decimal(loan_duration_str) >= 0
-    )
-    is_empty = not loan_duration_str
+    def is_valid_loan_duration():
+        is_empty = not input_str
+        return is_zero_or_greater() or is_empty
 
-    return zero_or_greater or is_empty
+    def is_valid_loan_apr():
+        return is_zero_or_greater()
 
-
-def valid_loan_apr(loan_apr_str):
-    zero_or_greater = (
-        not invalid_number(loan_apr_str) and
-        decimal.Decimal(loan_apr_str) >= 0
-    )
-
-    return zero_or_greater
+    match input_type:
+        case "amount":
+            return is_valid_loan_amount()
+        case "duration":
+            return is_valid_loan_duration()
+        case "apr":
+            return is_valid_loan_apr()
 
 
 def request_loan_amount():
@@ -113,7 +116,7 @@ def request_loan_amount():
         prompt(key="enter_loan_amount")
         response = input("$").replace(",", '').replace("$", '')
 
-        if valid_loan_amount(response):
+        if is_valid_input(response, "amount"):
             break
 
         error_msg = determine_error_message(response, "loan_amount")
@@ -129,7 +132,7 @@ def request_loan_duration(duration_type):
     while True:
         response = input(f"{duration_type.capitalize()}s: ")
 
-        if valid_loan_duration_input(response):
+        if is_valid_input(response, "duration"):
             break
 
         error_msg = determine_error_message(response, "loan_duration")
@@ -169,7 +172,7 @@ def request_loan_apr():
         prompt(key="enter_apr")
         response = input("APR %: ").replace("%", "")
 
-        if valid_loan_apr(response):
+        if is_valid_input(response, "apr"):
             break
 
         error_msg = determine_error_message(response, "apr")
@@ -269,5 +272,6 @@ def start_program():
             print()
             prompt(key="goodbye")
             break
+
 
 start_program()
