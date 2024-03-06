@@ -1,0 +1,28 @@
+{
+  "welcome": [
+    "Welcome to the Mortgage/Car Loan Calculator!",
+    "By entering just a few details about your loan-- such as the loan amount,",
+    "duration (in years or months), and Annual Percentage Rate (APR %)-- you'll",
+    "get a clear breakdown of your loan's total cost, the interest you'll pay",
+    "over time, and what you can expect your monthly payment to be."
+  ],
+
+  "enter_loan_amount": "Please enter your loan amount:",
+  "empty_loan_amount": "You have to enter a loan amount.",
+  "zero_loan_amount": "You can't take out a loan for $0 dollars.",
+  "negative_loan_amount": "You can't take out a negative loan.",
+  "invalid_loan_amount": "Hmm, '{loan_amt}' doesn't look like a valid loan number.",
+
+  "enter_loan_duration": "Please enter your loan duration (press enter to skip):",
+  "empty_loan_duration": "Your loan must have a duration.",
+  "negative_loan_duration": "The number of {duration_type}s cannot be negative.",
+  "invalid_loan_duration": "'{response}' is not a valid number of {duration_type}s.",
+
+  "enter_apr": "Please enter your annual percentage rate (APR %):",
+  "empty_apr": "You must provide an APR %. Enter 0 for a 0% APR.",
+  "negative_apr": "Your APR % cannot be negative.",
+  "invalid_apr": "'{response}' is not a valid APR %.",
+
+  "calculate_again": "Would you like to calculate another loan? (press enter to continue or q to quit)",
+  "goodbye": "Goodbye! Thank you for using the Mortgage/Car Loan Calculator!"
+}
