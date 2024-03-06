@@ -8,10 +8,6 @@ with open('messages.json', 'r') as file:
 
 
 def clear_screen():
-    """
-    Clears the user's terminal screen.
-    """
-
     if platform.system() == "Windows":
         os.system("cls")
     else:
@@ -32,15 +28,6 @@ def prompt(message="", *, key=None, args=None):
 
 
 def prompt_error(key, args=None):
-    """
-    Displays a prefixed error message that is padded by newlines.
-    This function can:
-    1. Retrieve and display messages based on a key from the 'messages.json'
-       JSON file.
-    2. Retrieve, format and display messages based on a key and format
-       arguments from the 'messages.json' file.
-    """
-
     if args:
         message = MESSAGES[key].format(**args)
     else:
