@@ -101,6 +101,7 @@ def request_loan_amount():
             break
 
         error_message = determine_error_message(response, "loan_amount")
+
         if error_message == "invalid_loan_amount":
             prompt_error(key=error_message, args={"loan_amt":response})
         else:
