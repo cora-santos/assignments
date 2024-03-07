@@ -3,6 +3,8 @@ import platform
 import json
 import decimal
 
+MONTHS_IN_YEAR = 12
+
 with open('messages.json', 'r') as file:
     MESSAGES = json.load(file)
 
@@ -139,7 +141,7 @@ def total_loan_months():
         prompt(key="enter_loan_duration")
         years = request_loan_duration("year")
         months = request_loan_duration("month")
-        total_months = (years * 12) + months
+        total_months = (years * MONTHS_IN_YEAR) + months
 
         if total_months > 0:
             break
@@ -188,7 +190,7 @@ def request_loan_details():
 def calculate_loan_results(amount, months, apr_percent):
     def monthly_interest_rate():
         apr_decimal = apr_percent / 100
-        return apr_decimal / 12
+        return apr_decimal / MONTHS_IN_YEAR
 
     def monthly_payment():
         interest_rate = monthly_interest_rate()
