@@ -1,0 +1,17 @@
+{
+  "welcome": "Welcome to Rock, Paper, Scissors, Spock, Lizard!",
+  "opponent_greeting": "{opponent_name} will be your opponent today.",
+  "welcome_back": "Welcome back! Let's play another match of Rock, Paper, Scissors, Spock, Lizard!",
+  "goodbye": "Bye! Thanks for playing with {opponent_name}!",
+
+  "round_results": "You chose {player_move} and {opponent_name} chose {opponent_move}.",
+  "user_wins_round": "Congratulations, you won this round! You have been awarded a point.",
+  "opponent_wins_round": "{name} won this round and has been awarded a point.",
+  "round_tied": "It's a tie. No points were awarded this round.",
+
+  "winner_detected": "What's this? Looks like we've got ourselves a winner!",
+  "drumroll": "🥁🥁🥁 ...DRUMROLL PLEASE... 🥁🥁🥁",
+  "user_grand_winner": "🎊 CONGRATULATIONS! You're the grand winner! 🎊",
+  "opponent_grand_winner": "{opponent_name} 🐍 is the grand winner! Better luck next time!",
+  "play_again": "Want to play again? Enter 'q!' or 'quit' if you'd rather not."
+}
