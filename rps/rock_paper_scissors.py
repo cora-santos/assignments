@@ -248,6 +248,7 @@ def process_moves(game, user_move, opponent_move):
     process_round(game, user_move, opponent_move)
 
     clear_screen()
+    display_scoreboard(game)
     display_round_results(game, user_move, opponent_move)
 
 
