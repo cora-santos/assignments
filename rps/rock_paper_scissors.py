@@ -35,9 +35,27 @@ def clear_screen():
         os.system("clear")
 
 
-def prompt(*messages, key=None, args=None, prefix=">>", end="\n"):
-    if key and args:
-        print(f"{prefix} {MESSAGES[key].format(**args)}", end=end)
+def prompt(*messages, key=None, kwargs=None, prefix=">>", end="\n"):
+    """
+    Prints values to sys.stdout. If no arguments are passed, nothing will be
+    printed.
+
+    *messages
+      zero or more objects to be printed
+    key
+      key value from MESSAGES; used to retrieve the respective
+      message
+    kwargs
+      a dictionary object used to format the values from MESSAGES;
+      dictionary key names must match the values enclosed in curly braces
+    prefix
+      string prepended to values
+    end
+      string appended after the last value, default a newline
+    """
+
+    if key and kwargs:
+        print(f"{prefix} {MESSAGES[key].format(**kwargs)}", end=end)
     elif key:
         print(f"{prefix} {MESSAGES[key]}", end=end)
     else:
@@ -134,7 +152,7 @@ def display_introduction(returning_user=False):
         prompt(key="welcome")
         prompt(
             key="opponent_greeting",
-            args={"opponent_name": SETTINGS["opponent_name"]}
+            kwargs={"opponent_name": SETTINGS["opponent_name"]}
         )
         prompt_enter_to_continue(False)
 
@@ -166,12 +184,12 @@ def display_round_results(game, user_move, opponent_move):
         "opponent_name": opponent,
         "opponent_move": opponent_move.upper()
     }
-    prompt(key="round_results", args=format_args, end="\n\n")
+    prompt(key="round_results", kwargs=format_args, end="\n\n")
 
     if winner == "user":
         prompt(key="user_wins_round")
     elif winner == opponent:
-        prompt(key="opponent_wins_round", args={"name": opponent})
+        prompt(key="opponent_wins_round", kwargs={"name": opponent})
     else:
         prompt(key="round_tied")
 
@@ -214,7 +232,7 @@ def display_game_results(game):
         prompt(key="user_grand_winner", prefix='')
     else:
         prompt(key="opponent_grand_winner",
-               args={"opponent_name": SETTINGS["opponent_name"]},
+               kwargs={"opponent_name": SETTINGS["opponent_name"]},
                prefix='')
 
     prompt_enter_to_continue()
@@ -356,7 +374,7 @@ def start_program():
 def exit_program():
     prompt(
         key="goodbye",
-        args={"opponent_name": SETTINGS["opponent_name"]},
+        kwargs={"opponent_name": SETTINGS["opponent_name"]},
         prefix="\n>>",
         end="\n\n"
     )
