@@ -1,8 +1,8 @@
-import random
 import json
-import sys
 import os
 import platform
+import random
+import sys
 from time import sleep
 
 SETTINGS = {
